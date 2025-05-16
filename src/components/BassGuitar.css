@@ -230,6 +230,21 @@
   filter: brightness(1.2);
 }
 
+/* Add the string label styles here */
+.string-label {
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
 @keyframes stringVibration {
   0% { transform: scaleY(1); }
   25% { transform: scaleY(1.5); }
