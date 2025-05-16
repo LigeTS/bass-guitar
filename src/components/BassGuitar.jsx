@@ -11,15 +11,47 @@ const BassGuitar = () => {
     { note: 'G', frequency: '98.0 Hz', color: '#D2691E' }
   ];
 
-  // Function to play sound (we'll add sound files later)
+  // Function to play sound
   const playString = (note) => {
     console.log(`Playing bass string: ${note}`);
     
-    // For now, we'll use placeholder - later we'll add actual sound files
-    // const sound = new Howl({
-    //   src: [`/sounds/bass-${note.toLowerCase()}.mp3`]
-    // });
-    // sound.play();
+    // First try to load and play the sound file
+    const sound = new Howl({
+      src: [`/sounds/bass-${note.toLowerCase()}.mp3`, `/sounds/bass-${note.toLowerCase()}.wav`],
+      volume: 0.8,
+      onloaderror: () => {
+        console.log(`Could not load sound file for ${note}. Using Web Audio API instead.`);
+        // Fallback: Create a simple tone using Web Audio API
+        playTone(note);
+      }
+    });
+    sound.play();
+  };
+
+  // Fallback function to generate simple tones
+  const playTone = (note) => {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    // Set frequencies for each bass string
+    const frequencies = {
+      'E': 82.41,  // E2
+      'A': 110.0,  // A2
+      'D': 146.83, // D3
+      'G': 196.0   // G3
+    };
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destinationNode);
+    
+    oscillator.frequency.value = frequencies[note];
+    oscillator.type = 'sawtooth'; // Gives a richer bass sound
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 1.5);
   };
 
   return (
