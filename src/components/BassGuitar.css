@@ -193,12 +193,20 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;  /* Slightly smaller markers */
-  height: 20px;
-  background: radial-gradient(circle, #E2DFD2 0%, #D4D0C8 50%, #BDB76B 100%);
+  width: 30px;
+  height: 30px;
+  /* Updated to shiny black gradient */
+  background: radial-gradient(circle at 30% 30%, 
+    #444 0%, 
+    #222 40%, 
+    #111 60%, 
+    #000 100%
+  );
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  left: -9px;  /* Adjusted to center with new width */
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.2),
+    inset 0 0 4px rgba(255, 255, 255, 0.3);
+  left: -9px;
   z-index: 2;
 }
 
