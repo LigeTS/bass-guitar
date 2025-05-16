@@ -146,11 +146,11 @@
   position: relative;
   width: 800px;
   height: 300px;
-  margin: 20px 0;
+  margin: 20px auto;  /* Added auto for horizontal centering */
   background: linear-gradient(45deg, #2c2c2c, #3c3c3c);
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+  overflow: visible;  /* Changed from hidden */
 }
 
 .neck {
