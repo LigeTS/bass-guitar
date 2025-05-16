@@ -205,7 +205,7 @@ const BassGuitar = () => {
     className={`string ${vibratingStrings[string.note] ? 'vibrating' : ''}`}
     style={{ 
       backgroundColor: string.color,
-      top: `${50 + index * 45}px`  /* Changed from 10 + index * 40px */
+      top: `${50 + index * 65}px`  /* Changed from 10 + index * 40px */
     }}
     onClick={() => playString(string.note)}
   >

@@ -228,7 +228,7 @@
   width: 560px;
   height: 4px;
   /* Adjust spacing to spread strings evenly */
-  top: calc(50px + (var(--index) * 45px));  /* Changed from 10px + 40px spacing */
+  top: calc(50px + (var(--index) * 65px));  /* Changed from 10px + 40px spacing */
   cursor: pointer;
   border-radius: 2px;
   transition: all 0.1s ease;
