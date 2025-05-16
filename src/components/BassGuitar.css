@@ -172,6 +172,8 @@
   background-color: #C0C0C0;
   border-radius: 1px;
   box-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+  /* Add specific left positions for each fret */
+  left: calc(var(--fret-index) * 100px + 60px);
 }
 
 .fret-number {
@@ -192,9 +194,19 @@
   transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  background: radial-gradient(circle, #E2DFD2, #fff);
+  background: radial-gradient(circle, #E2DFD2 0%, #D4D0C8 50%, #BDB76B 100%);
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  /* Add specific left position */
+  left: -6px;  /* Centers the marker on the fret */
+  z-index: 2;  /* Ensure markers appear above frets */
+}
+
+/* Add marker positions for specific frets (3rd, 5th, 7th, etc.) */
+.fret:nth-child(3) .fret-marker,
+.fret:nth-child(5) .fret-marker,
+.fret:nth-child(7) .fret-marker {
+  display: block;
 }
 
 /* Enhanced Strings */
