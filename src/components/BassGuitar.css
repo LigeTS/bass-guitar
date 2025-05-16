@@ -156,9 +156,9 @@
 .neck {
   position: absolute;
   left: 0;
-  top: 50px;
-  width: 600px;  /* Increased from 400px */
-  height: 200px;
+  top: 10px;  /* Changed from 50px */
+  width: 600px;
+  height: 280px;  /* Changed from 200px */
   background: linear-gradient(to bottom, #8B4513, #CD853F);
   border-radius: 5px;
   border: 2px solid #654321;
