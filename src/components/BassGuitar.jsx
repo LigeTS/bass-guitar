@@ -192,7 +192,7 @@ const BassGuitar = () => {
           {/* Frets */}
          {[1, 2, 3, 4, 5].map(fret => (
   <div key={fret} className="fret" style={{ '--fret-index': fret }}>
-    {[3, 5].includes(fret) && <div className="fret-marker" />}
+    {[0, 3].includes(fret) && <div className="fret-marker" />}
   </div>
 ))}
         </div>
