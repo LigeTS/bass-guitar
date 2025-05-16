@@ -172,8 +172,8 @@
   background-color: #C0C0C0;
   border-radius: 1px;
   box-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
-  /* Add specific left positions for each fret */
-  left: calc(var(--fret-index) * 100px + 60px);
+  /* Adjust fret spacing - moved left by reducing the 60px offset */
+  left: calc(var(--fret-index) * 100px + 30px);
 }
 
 .fret-number {
@@ -188,25 +188,43 @@
   border-radius: 10px;
 }
 
+/* Adjust marker positioning */
 .fret-marker {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 25px;
-  height: 25px;
+  width: 20px;  /* Slightly smaller markers */
+  height: 20px;
   background: radial-gradient(circle, #E2DFD2 0%, #D4D0C8 50%, #BDB76B 100%);
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  /* Add specific left position */
-  left: -11px;  /* Centers the marker on the fret */
-  z-index: 2;  /* Ensure markers appear above frets */
+  left: -9px;  /* Adjusted to center with new width */
+  z-index: 2;
 }
 
-/* Add marker positions for specific frets (3rd, 5th, 7th, etc.) */
-.fret:nth-child(3) .fret-marker,
-.fret:nth-child(5) .fret-marker,
-.fret:nth-child(7) .fret-marker {
-  display: block;
+/* Add double markers for better visibility */
+.fret:nth-child(3) .fret-marker::before,
+.fret:nth-child(5) .fret-marker::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  clip-path: inherit;
+  box-shadow: inherit;
+  top: -80px;  /* Position above the center marker */
+}
+
+.fret:nth-child(3) .fret-marker::after,
+.fret:nth-child(5) .fret-marker::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: inherit;
+  clip-path: inherit;
+  box-shadow: inherit;
+  bottom: -80px;  /* Position below the center marker */
 }
 
 /* Enhanced Strings */
