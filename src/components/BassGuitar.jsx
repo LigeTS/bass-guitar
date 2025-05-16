@@ -29,34 +29,81 @@ const BassGuitar = () => {
   };
 
   // Fallback function to generate simple tones
-  const playTone = (note) => {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    // Set frequencies for each bass string
-    const frequencies = {
-      'E': 82.41,  // E2
-      'A': 110.0,  // A2
-      'D': 146.83, // D3
-      'G': 196.0   // G3
-    };
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destinationNode);
-    
-    oscillator.frequency.value = frequencies[note];
-    oscillator.type = 'sawtooth'; // Gives a richer bass sound
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 1.5);
+  const playTone = async (note) => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Resume audio context if it's suspended
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      // Set frequencies for each bass string
+      const frequencies = {
+        'E': 82.41,  // E2
+        'A': 110.0,  // A2
+        'D': 146.83, // D3
+        'G': 196.0   // G3
+      };
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(frequencies[note], audioContext.currentTime);
+      oscillator.type = 'sawtooth'; // Gives a richer bass sound
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.5);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 1.5);
+      
+      console.log(`Generated tone for ${note} at ${frequencies[note]}Hz`);
+    } catch (error) {
+      console.error('Error playing tone:', error);
+    }
+  };
+
+  // Simple test function
+  const testAudio = async () => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Resume audio context if it's suspended
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = 440; // A4 note
+      oscillator.type = 'sine';
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.5);
+      
+      console.log('Test audio played - if no sound, check volume/speakers');
+    } catch (error) {
+      console.error('Error playing test audio:', error);
+    }
   };
 
   return (
     <div className="bass-guitar-container">
       <h1>Interactive Bass Guitar</h1>
+      
+      {/* Test button */}
+      <button onClick={testAudio} style={{margin: '10px', padding: '10px', fontSize: '16px'}}>
+        🔊 Test Audio
+      </button>
       
       <div className="bass-guitar">
         {/* Neck of the bass */}
