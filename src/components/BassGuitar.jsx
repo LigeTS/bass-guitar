@@ -151,7 +151,7 @@ const BassGuitar = () => {
 
   return (
     <div className="bass-guitar-container">
-      <h1>Interactive Bass Guitar Studio</h1>
+      <h1>Interactive Bass Guitar</h1>
       
       {/* Controls Panel */}
       <div className="controls-panel">
@@ -190,9 +190,11 @@ const BassGuitar = () => {
         {/* Neck of the bass */}
         <div className="neck">
           {/* Frets */}
-          {[1, 2, 3, 4, 5].map(fret => (
-            <div key={fret} className="fret" style={{ left: `${60 + (fret-1) * 48}px` }} />
-          ))}
+         {[1, 2, 3, 4, 5].map(fret => (
+  <div key={fret} className="fret" style={{ '--fret-index': fret }}>
+    {[3, 5].includes(fret) && <div className="fret-marker" />}
+  </div>
+))}
         </div>
         
         {/* Strings */}
