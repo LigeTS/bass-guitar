@@ -227,7 +227,7 @@
   left: 20px;
   width: 560px;
   height: 4px;
-  top: calc(20px + (var(--index) * 60px));  /* Dynamic spacing */
+  top: calc(10px + (var(--index) * 40px));  /* Changed from 60px to 40px spacing */
   cursor: pointer;
   border-radius: 2px;
   transition: all 0.1s ease;

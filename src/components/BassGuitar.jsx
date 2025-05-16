@@ -199,21 +199,21 @@ const BassGuitar = () => {
         
         {/* Strings */}
         <div className="strings">
-          {strings.map((string, index) => (
-            <div
-              key={string.note}
-              className={`string ${vibratingStrings[string.note] ? 'vibrating' : ''}`}
-              style={{ 
-                backgroundColor: string.color,
-                top: `${20 + index * 60}px`
-              }}
-              onClick={() => playString(string.note)}
-            >
-              <span className="string-label">
-                {string.note} ({string.frequency})
-              </span>
-            </div>
-          ))}
+         {strings.map((string, index) => (
+  <div
+    key={string.note}
+    className={`string ${vibratingStrings[string.note] ? 'vibrating' : ''}`}
+    style={{ 
+      backgroundColor: string.color,
+      top: `${10 + index * 40}px`  // Changed from 60px to 40px spacing
+    }}
+    onClick={() => playString(string.note)}
+  >
+    <span className="string-label">
+      {string.note} ({string.frequency})
+    </span>
+  </div>
+))}
         </div>
         
         {/* Body of the bass */}
