@@ -212,7 +212,7 @@
 
 /* Add double markers for better visibility */
 .fret:nth-child(1) .fret-marker::before,
-.fret:nth-child(3) .fret-marker::before {
+.fret:nth-child(4) .fret-marker::before {
   content: '';
   position: absolute;
   width: 20px;
